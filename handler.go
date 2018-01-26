@@ -6,19 +6,20 @@ import (
 	"fmt"
 	"encoding/json"
 
-	"./infrastructure"
+	"./repository"
+	"./user"
 )
 
 func Create(evt *apigatewayproxyevt.Event, ctx *runtime.Context) (interface{}, error) {
-	var user infrastructure.User
+	var myUser user.User
 
-	err := json.Unmarshal([]byte(evt.Body), &user)
+	err := json.Unmarshal([]byte(evt.Body), &myUser)
 
 	checkErr(err)
 
-	infrastructure.Store(user)
+	repository.Store(myUser)
 
-	return user, nil
+	return myUser, nil
 }
 
 func Get(evt *apigatewayproxyevt.Event, _ *runtime.Context) (interface{}, error) {

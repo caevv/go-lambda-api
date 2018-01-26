@@ -1,16 +1,13 @@
-package infrastructure
+package repository
 
 import (
 	"github.com/BurntSushi/toml"
 	"fmt"
 	"database/sql"
-
 	_ "github.com/go-sql-driver/mysql"
-)
 
-type User struct {
-	Username string
-}
+	"../user"
+)
 
 type Config struct {
 	Database database
@@ -24,7 +21,7 @@ type database struct {
 	Password string
 }
 
-func Store(user User) {
+func Store(user user.User) {
 	var conf Config
 	_, err := toml.DecodeFile("./config.toml", &conf)
 	checkErr(err)

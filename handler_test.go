@@ -10,7 +10,8 @@ import (
 	"github.com/BurntSushi/toml"
 	"fmt"
 
-	"./infrastructure"
+	"./repository"
+	"./user"
 )
 
 func iHaveANewClient(user string) error {
@@ -29,9 +30,9 @@ func iAskToCreateANewUser(user string) error {
 }
 
 func theUserShouldHaveBeenCreated(username string) error {
-	user := find(username)
+	myUser := find(username)
 
-	if user.Username != username {
+	if myUser.Username != username {
 		panic("username not found")
 	}
 
@@ -52,8 +53,8 @@ func FeatureContext(s *godog.Suite) {
 	})
 }
 
-func find(username string) infrastructure.User {
-	var conf infrastructure.Config
+func find(username string) user.User {
+	var conf repository.Config
 	_, err := toml.DecodeFile("./config.toml", &conf)
 	checkErr(err)
 
@@ -69,5 +70,5 @@ func find(username string) infrastructure.User {
 	_, err = stmt.Exec(username)
 	checkErr(err)
 
-	return infrastructure.User{Username:username}
+	return user.User{Username:username}
 }
