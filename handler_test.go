@@ -9,6 +9,8 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/BurntSushi/toml"
 	"fmt"
+
+	"./infrastructure"
 )
 
 func iHaveANewClient(user string) error {
@@ -50,8 +52,8 @@ func FeatureContext(s *godog.Suite) {
 	})
 }
 
-func find(username string) User {
-	var conf Config
+func find(username string) infrastructure.User {
+	var conf infrastructure.Config
 	_, err := toml.DecodeFile("./config.toml", &conf)
 	checkErr(err)
 
@@ -67,5 +69,5 @@ func find(username string) User {
 	_, err = stmt.Exec(username)
 	checkErr(err)
 
-	return User{Username:username}
+	return infrastructure.User{Username:username}
 }
