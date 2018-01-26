@@ -18,10 +18,10 @@ func iHaveANewClient(user string) error {
 	return nil
 }
 
-func iAskToCreateANewUser(user string) error {
+func iAskToCreateANewUser(username string) error {
 	Get(&apigatewayproxyevt.Event{
 		HTTPMethod: "POST",
-		QueryStringParameters:map[string]string{"username": "John"},
+		QueryStringParameters:map[string]string{"username": username},
 	},
 		&runtime.Context{},
 	)
