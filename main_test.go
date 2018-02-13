@@ -1,14 +1,14 @@
 package main
 
 import (
-	"github.com/DATA-DOG/godog"
-	"github.com/eawsy/aws-lambda-go-event/service/lambda/runtime/event/apigatewayproxyevt"
-	"github.com/eawsy/aws-lambda-go-core/service/lambda/runtime"
 	"database/sql"
+	"github.com/DATA-DOG/godog"
+	"github.com/eawsy/aws-lambda-go-core/service/lambda/runtime"
+	"github.com/eawsy/aws-lambda-go-event/service/lambda/runtime/event/apigatewayproxyevt"
 
-	_ "github.com/go-sql-driver/mysql"
-	"github.com/BurntSushi/toml"
 	"fmt"
+	"github.com/BurntSushi/toml"
+	_ "github.com/go-sql-driver/mysql"
 
 	"./repository"
 	"./user"
@@ -20,8 +20,8 @@ func iHaveANewClient(user string) error {
 
 func iAskToCreateANewUser(username string) error {
 	Get(&apigatewayproxyevt.Event{
-		HTTPMethod: "POST",
-		QueryStringParameters:map[string]string{"username": username},
+		HTTPMethod:            "POST",
+		QueryStringParameters: map[string]string{"username": username},
 	},
 		&runtime.Context{},
 	)
@@ -70,5 +70,5 @@ func find(username string) user.User {
 	_, err = stmt.Exec(username)
 	checkErr(err)
 
-	return user.User{Username:username}
+	return user.User{Username: username}
 }

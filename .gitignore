@@ -3,4 +3,4 @@ vendor
 .serverless
 .env
 package.zip
-handler.so
+main.so

@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/eawsy/aws-lambda-go-event/service/lambda/runtime/event/apigatewayproxyevt"
-	"github.com/eawsy/aws-lambda-go-core/service/lambda/runtime"
-	"fmt"
 	"encoding/json"
+	"fmt"
+	"github.com/eawsy/aws-lambda-go-core/service/lambda/runtime"
+	"github.com/eawsy/aws-lambda-go-event/service/lambda/runtime/event/apigatewayproxyevt"
 
 	"./repository"
 	"./user"
