@@ -1,13 +1,17 @@
 package repository
 
 import (
-	"github.com/BurntSushi/toml"
-	"fmt"
 	"database/sql"
+	"fmt"
+	"github.com/BurntSushi/toml"
 	_ "github.com/go-sql-driver/mysql"
 
-	"../user"
+	"app/user"
 )
+
+type UserStore interface {
+	Store(user user.User)
+}
 
 type Config struct {
 	Database database

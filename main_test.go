@@ -1,17 +1,17 @@
-package main
+package go_lambda_api
 
 import (
 	"database/sql"
+	"fmt"
 	"github.com/DATA-DOG/godog"
 	"github.com/eawsy/aws-lambda-go-core/service/lambda/runtime"
 	"github.com/eawsy/aws-lambda-go-event/service/lambda/runtime/event/apigatewayproxyevt"
 
-	"fmt"
 	"github.com/BurntSushi/toml"
 	_ "github.com/go-sql-driver/mysql"
 
-	"./repository"
-	"./user"
+	"app/repository"
+	"app/user"
 )
 
 func iHaveANewClient(user string) error {

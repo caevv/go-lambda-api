@@ -1,10 +1,27 @@
 HANDLER=handler
 PACKAGE=package
+
 ifdef DOTENV
 	DOTENV_TARGET=dotenv
 else
 	DOTENV_TARGET=.env
 endif
+
+
+
+
+
+test1:
+	docker-compose run app godog
+
+bash:
+	docker-compose run app bash
+
+
+
+
+
+
 
 ########################################
 # entrypoints - run within docker only #

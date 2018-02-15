@@ -1,4 +1,4 @@
-package main
+package go_lambda_api
 
 import (
 	"encoding/json"
@@ -6,8 +6,8 @@ import (
 	"github.com/eawsy/aws-lambda-go-core/service/lambda/runtime"
 	"github.com/eawsy/aws-lambda-go-event/service/lambda/runtime/event/apigatewayproxyevt"
 
-	"./repository"
-	"./user"
+	"app/repository"
+	"app/user"
 )
 
 func Create(evt *apigatewayproxyevt.Event, ctx *runtime.Context) (interface{}, error) {
