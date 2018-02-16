@@ -13,18 +13,6 @@ type UserStore interface {
 	Store(user user.User)
 }
 
-type Config struct {
-	Database database
-}
-
-type database struct {
-	Server   string
-	Port     string
-	Database string
-	User     string
-	Password string
-}
-
 func Store(user user.User) {
 	var conf Config
 	_, err := toml.DecodeFile("./config.toml", &conf)
@@ -41,6 +29,23 @@ func Store(user user.User) {
 
 	_, err = stmt.Exec(user.Username)
 	checkErr(err)
+}
+
+type Repository struct {
+	user UserStore
+	config Config
+}
+
+type Config struct {
+	Database database
+}
+
+type database struct {
+	Server   string
+	Port     string
+	Database string
+	User     string
+	Password string
 }
 
 func checkErr(err error) {

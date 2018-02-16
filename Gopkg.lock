@@ -18,16 +18,15 @@
   version = "v0.7.4"
 
 [[projects]]
-  branch = "master"
-  name = "github.com/eawsy/aws-lambda-go-core"
-  packages = ["service/lambda/runtime"]
-  revision = "e26eed6aa244a3d45aa693816a9c5faf39390fcd"
-
-[[projects]]
-  branch = "master"
-  name = "github.com/eawsy/aws-lambda-go-event"
-  packages = ["service/lambda/runtime/event/apigatewayproxyevt"]
-  revision = "a318481f661f091bafea408f9967cb1ac5bf8905"
+  name = "github.com/aws/aws-lambda-go"
+  packages = [
+    "events",
+    "lambda",
+    "lambda/messages",
+    "lambdacontext"
+  ]
+  revision = "6e2e37798efbb1dfd8e9c6681702e683a6046517"
+  version = "v1.0.1"
 
 [[projects]]
   name = "github.com/go-sql-driver/mysql"
@@ -38,6 +37,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "ab4fef131ee828e96ba67d31a7d690bd5f2f42040c6766b1b12fe856f87e0ff7"
+  inputs-digest = "8dd37261c3a0973b9a91f7d25bd9a3bbb9e592df790e8f41239150ee1fb4600a"
   solver-name = "gps-cdcl"
   solver-version = 1

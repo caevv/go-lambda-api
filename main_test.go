@@ -2,10 +2,10 @@ package go_lambda_api
 
 import (
 	"database/sql"
+	"encoding/json"
 	"fmt"
 	"github.com/DATA-DOG/godog"
-	"github.com/eawsy/aws-lambda-go-core/service/lambda/runtime"
-	"github.com/eawsy/aws-lambda-go-event/service/lambda/runtime/event/apigatewayproxyevt"
+	"github.com/aws/aws-lambda-go/events"
 
 	"github.com/BurntSushi/toml"
 	_ "github.com/go-sql-driver/mysql"
@@ -19,11 +19,14 @@ func iHaveANewClient(user string) error {
 }
 
 func iAskToCreateANewUser(username string) error {
-	Get(&apigatewayproxyevt.Event{
-		HTTPMethod:            "POST",
-		QueryStringParameters: map[string]string{"username": username},
-	},
-		&runtime.Context{},
+	body, err := json.Marshal(map[string]string{"username": username})
+	checkErr(err)
+
+	Create(
+		events.APIGatewayProxyRequest{
+			HTTPMethod: "POST",
+			Body:       string(body),
+		},
 	)
 
 	return nil
