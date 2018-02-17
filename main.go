@@ -2,7 +2,6 @@ package go_lambda_api
 
 import (
 	"encoding/json"
-	"fmt"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
@@ -12,8 +11,6 @@ import (
 )
 
 func Create(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-	fmt.Println(request.Body)
-
 	var myUser user.User
 
 	err := json.Unmarshal([]byte(request.Body), &myUser)
