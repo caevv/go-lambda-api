@@ -2,12 +2,6 @@
 
 
 [[projects]]
-  name = "github.com/BurntSushi/toml"
-  packages = ["."]
-  revision = "b26d9c308763d68093482582cea63d69be07a0f0"
-  version = "v0.3.0"
-
-[[projects]]
   name = "github.com/DATA-DOG/godog"
   packages = [
     ".",
@@ -37,6 +31,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "8dd37261c3a0973b9a91f7d25bd9a3bbb9e592df790e8f41239150ee1fb4600a"
+  inputs-digest = "0252a7043aa8410492ec04dc4376c98faef6a25ce17bb364c45eaa086d3e4d9a"
   solver-name = "gps-cdcl"
   solver-version = 1

@@ -11,7 +11,7 @@ endif
 
 
 
-test1:
+test:
 	docker-compose run app godog
 
 bash:
@@ -34,9 +34,9 @@ build: $(DOTENV_TARGET) _clean deps
 	docker-compose run --rm sls-go make _build
 .PHONY: build
 
-test: $(DOTENV_TARGET) deps
+tests: $(DOTENV_TARGET) deps
 	docker-compose run --rm sls-go make _test
-.PHONY: test
+.PHONY: tests
 
 deploy: $(DOTENV_TARGET)
 	docker-compose run --rm sls-go make _deploy

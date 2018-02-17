@@ -3,8 +3,8 @@ package repository
 import (
 	"database/sql"
 	"fmt"
-	"github.com/BurntSushi/toml"
 	_ "github.com/go-sql-driver/mysql"
+	"os"
 
 	"app/user"
 )
@@ -13,39 +13,47 @@ type UserStore interface {
 	Store(user user.User)
 }
 
+type Repository struct {
+	db *sql.DB
+}
+
 func Store(user user.User) {
-	var conf Config
-	_, err := toml.DecodeFile("./config.toml", &conf)
-	checkErr(err)
-
-	connString := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", conf.Database.User, conf.Database.Password, conf.Database.Server, conf.Database.Port, conf.Database.Database)
-
-	db, err := sql.Open("mysql", connString)
-	checkErr(err)
+	db := getDb()
 
 	// insert
-	stmt, err := db.Prepare("INSERT users SET username=?")
+	stmt, err := db.Prepare("INSERT INTO users(username) VALUES (username=?)")
 	checkErr(err)
 
 	_, err = stmt.Exec(user.Username)
 	checkErr(err)
 }
 
-type Repository struct {
-	user UserStore
-	config Config
+func Find(username string) user.User {
+	db := getDb()
+
+	// insert
+	stmt, err := db.Prepare("SELECT * FROM users WHERE username=?")
+	checkErr(err)
+
+	_, err = stmt.Exec(username)
+	checkErr(err)
+
+	return user.User{Username: username}
 }
 
-type Config struct {
-	Database database
-}
+func getDb() (*sql.DB) {
+	conString := fmt.Sprintf(
+		"%s:%s@tcp(%s:%s)/%s",
+		os.Getenv("USER"),
+		os.Getenv("PASSWORD"),
+		os.Getenv("HOST"),
+		os.Getenv("PORT"),
+		os.Getenv("DATABASE"),
+	)
+	db, err := sql.Open("mysql", conString)
+	checkErr(err)
 
-type database struct {
-	Server   string
-	Port     string
-	Database string
-	User     string
-	Password string
+	return db
 }
 
 func checkErr(err error) {
