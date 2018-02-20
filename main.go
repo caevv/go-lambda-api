@@ -24,34 +24,6 @@ func Create(request events.APIGatewayProxyRequest) (events.APIGatewayProxyRespon
 	return events.APIGatewayProxyResponse{Body: "OK", StatusCode: 200}, nil
 }
 
-//func Get(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-//	// Get user
-//	fmt.Print(evt)
-//
-//	return nil, nil
-//}
-//
-//func List(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-//	// List users
-//	fmt.Print(evt)
-//
-//	return nil, nil
-//}
-//
-//func Update(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-//	// Update user
-//	fmt.Print(evt)
-//
-//	return nil, nil
-//}
-//
-//func Delete(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
-//	// Delete user
-//	fmt.Print(evt)
-//
-//	return nil, nil
-//}
-
 func main() {
 	lambda.Start(Create)
 }
